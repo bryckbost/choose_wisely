@@ -1,1 +1,6 @@
 <h1>How can I help you?</h1>
+<%= form_for @decision do |form| %>
+  <%= form.label :question %>
+  <%= form.text_field :question %>
+  <%= form.submit "Continue" %>
+<% end %>
