@@ -1,8 +1,9 @@
 class Decision
-  STEPS = %w(question options factors scores answer)
+  STEPS = %w(options factors scores answer)
 
   include MongoMapper::Document
 
+  key :options,  Array
   key :question, String
   key :step,     String
   key :token,    String
@@ -15,8 +16,7 @@ class Decision
   end
 
   def continue
-    increment_step
-    save
+    increment_step if save
   end
 
   private
@@ -29,6 +29,10 @@ class Decision
     end
 
     def increment_step
-      self.step = STEPS[STEPS.index(step) + 1]
+      update_attribute(:step, next_step) if next_step
+    end
+
+    def next_step
+      STEPS[STEPS.index(step) + 1]
     end
   end

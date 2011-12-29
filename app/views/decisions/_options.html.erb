@@ -1,0 +1,8 @@
+<h1>Okay, what are your options?</h1>
+<%= form_for @decision do |form| %>
+  <% [@decision.options.size + 1, 2].max.times do |i| %>
+    <%= label_tag "decision_options_#{i}", "Option ##{i + 1}" %>
+    <%= text_field_tag "decision[options][]", @decision.options[i], :id => "decision_options_#{i}" %>
+  <% end %>
+  <%= form.submit "Continue" %>
+<% end %>

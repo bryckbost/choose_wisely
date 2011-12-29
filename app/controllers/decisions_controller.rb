@@ -15,4 +15,11 @@ class DecisionsController < ApplicationController
     @decision = Decision.create(params[:decision])
     respond_with @decision
   end
+
+  def update
+    @decision = Decision.find_by_token!(params[:id])
+    @decision.attributes = params[:decision]
+    @decision.continue
+    respond_with @decision
+  end
 end
