@@ -3,10 +3,12 @@ class Decision
 
   include MongoMapper::Document
 
+  key :factors,  Array
   key :options,  Array
   key :question, String
   key :step,     String
   key :token,    String
+  key :weights,  Array
 
   before_create :set_token, :unless => :token?
   before_create :set_step, :unless => :step?
