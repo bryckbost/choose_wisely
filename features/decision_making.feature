@@ -24,17 +24,14 @@ Feature: Decision making
       | Weight #3 | 7 |
     And I press "Continue"
     Then I should see "Great! Let’s start scoring your options."
-    And I should see "2008 Ford Focus"
-    When I fill in the following:
+    When I fill in the following within the "2008 Ford Focus" column:
       | Price       | 8 |
       | Safety      | 6 |
       | Reliability | 7 |
-    And I press "Continue"
-    Then I should see "2007 Toyota Camry"
-    When I fill in the following:
-      | Price        | 6 |
-      | Safety       | 8 |
-      | Reliabilitly | 7 |
+    And I fill in the following within the "2007 Toyota Camry" column:
+      | Price       | 6 |
+      | Safety      | 8 |
+      | Reliability | 7 |
     And I press "Continue"
     Then I should see "2008 Ford Focus" as the winner
     And I should see "50.3%" confidence
