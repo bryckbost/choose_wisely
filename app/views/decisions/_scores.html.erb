@@ -1,1 +1,27 @@
 <h1>Great! Let’s start scoring your options.</h1>
+<%= form_for @decision do |form| %>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <% @decision.options.each do |option| %>
+          <th><%= option %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @decision.factors.each_with_index do |factor, f| %>
+        <tr>
+          <td><%= factor %></td>
+          <% @decision.options.each_with_index do |option, o| %>
+            <td>
+              <%= label_tag "decision_scores_#{f}_#{o}", "#{option} #{factor}" %>
+              <%= text_field_tag "decision[scores][#{f}][#{o}]", @decision.scores.fetch(f, [])[o], :id => "decision_scores_#{f}_#{o}" %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= form.submit "Continue" %>
+<% end %>

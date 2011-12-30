@@ -6,6 +6,7 @@ class Decision
   key :factors,  Array
   key :options,  Array
   key :question, String
+  key :scores,   Array
   key :step,     String
   key :token,    String
   key :weights,  Array
@@ -37,4 +38,4 @@ class Decision
     def next_step
       STEPS[STEPS.index(step) + 1]
     end
-  end
+end
