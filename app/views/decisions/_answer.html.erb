@@ -1,3 +1,9 @@
 <h1>We have a winner!</h1>
 <h2 id="winner"><%= @decision.winner %></h2>
 <h3 id="confidence"><%= number_to_percentage(@decision.confidence, :precision => 1) %></h3>
+<% @decision.options.each do |option| %>
+  <section>
+    <header><%= option %></header>
+    <p><%= number_to_percentage(@decision.percentage(option), :precision => 1) %></p>
+  </section>
+<% end %>
