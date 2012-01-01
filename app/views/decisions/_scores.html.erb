@@ -15,8 +15,8 @@
           <td><%= factor %></td>
           <% @decision.options.each_with_index do |option, o| %>
             <td>
-              <%= label_tag "decision_scores_#{f}_#{o}", "#{option} #{factor}" %>
-              <%= text_field_tag "decision[scores][#{f}][#{o}]", @decision.scores.fetch(f, [])[o], :id => "decision_scores_#{f}_#{o}" %>
+              <%= label_tag "decision_scores_#{o}_#{f}", "#{option} #{factor}" %>
+              <%= text_field_tag "decision[scores][#{o}][#{f}]", @decision.scores.fetch(o, [])[f], :id => "decision_scores_#{o}_#{f}" %>
             </td>
           <% end %>
         </tr>
