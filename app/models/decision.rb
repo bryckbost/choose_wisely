@@ -26,13 +26,26 @@ class Decision
   end
 
   def winner
-    options.max_by{|o| score(o) }
+    winners.first
+  end
+
+  def winners
+    options.sort_by{|o| score(o) }.reverse
   end
 
   def score(option)
     sum = 0
     scores[options.index(option)].each_with_index{|s,i| sum += s * weights[i] }
     sum
+  end
+
+  def confidence
+    score_1, score_2 = winners.first(2).map{|w| score(w) }
+    score_1.to_f / (score_1 + score_2) * 100
+  end
+
+  def percentage(option)
+    score(option).to_f / perfect_score * 100
   end
 
   def perfect_score
