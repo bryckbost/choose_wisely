@@ -9,6 +9,7 @@ group :assets do
 end
 
 gem "mongo_mapper", "~> 0.10.1"
+gem "bson_ext", "~> 1.5.2"
 
 group :development, :test do
   gem "cucumber-rails", "~> 1.2.1", :require => false
