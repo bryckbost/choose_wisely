@@ -37,3 +37,9 @@ Feature: Decision making
     And I should see "50.3%" confidence
     And I should see "70.4%" within the "Focus" section
     And I should see "69.6%" within the "Camry" section
+
+  Scenario: Missing question
+    When I go to the homepage
+    And I fill in "Question" with ""
+    And I press "Continue"
+    Then I should see errors

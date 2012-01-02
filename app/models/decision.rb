@@ -14,6 +14,8 @@ class Decision
   key :token,    String
   key :weights,  IntegerArray
 
+  validates :question, :presence => true
+
   before_create :set_token, :unless => :token?
   before_create :set_step, :unless => :step?
 
