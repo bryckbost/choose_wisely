@@ -53,3 +53,32 @@ Feature: Decision making
     Then I should see "Okay, what are your options?"
     When I press "Continue"
     Then I should see errors
+
+  Scenario: Missing factors
+    Given I am on the homepage
+    When I fill in "Question" with "Which car should I buy?"
+    And I press "Continue"
+    And I fill in the following:
+      | Option #1 | Focus |
+      | Option #2 | Camry |
+    And I press "Continue"
+    Then I should see "Now, what factors affect your decision?"
+    When I press "Continue"
+    Then I should see errors
+
+  Scenario: Missing weights
+    Given I am on the homepage
+    When I fill in "Question" with "Which car should I buy?"
+    And I press "Continue"
+    And I fill in the following:
+      | Option #1 | Focus |
+      | Option #2 | Camry |
+    And I press "Continue"
+    And I fill in the following:
+      | Factor #1 | Price       |
+      | Factor #2 | Safety      |
+      | Factor #3 | Reliability |
+    And I press "Continue"
+    Then I should see "How important are those factors?"
+    When I press "Continue"
+    Then I should see errors
