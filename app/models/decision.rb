@@ -1,7 +1,6 @@
 require "integer_array"
 
 class Decision
-  STEPS = %w(options factors weights scores answer)
   SCALE = 10
 
   include MongoMapper::Document
@@ -10,21 +9,43 @@ class Decision
   key :options,  Array
   key :question, String
   key :scores,   IntegerArray
-  key :step,     String
+  key :state,    String
   key :token,    String
   key :weights,  IntegerArray
 
-  validates :question, :presence => true
-
   before_create :set_token, :unless => :token?
-  before_create :set_step, :unless => :step?
+
+  state_machine :initial => :questioned do
+    state :questioned do
+      validates :question, :presence => true
+    end
+
+    state :optioned do
+      validates :options, :presence => true
+    end
+
+    state :factored do
+      validates :factors, :presence => true
+    end
+
+    state :weighted do
+      validates :weights, :presence => true
+    end
+
+    state :scored do
+      validates :scores, :presence => true
+    end
+
+    event :continue do
+      transition :questioned => :optioned
+      transition :optioned => :factored
+      transition :factored => :weighted
+      transition :weighted  => :scored
+    end
+  end
 
   def to_param
     token
-  end
-
-  def continue
-    increment_step if save
   end
 
   def winner
@@ -57,17 +78,5 @@ class Decision
   private
     def set_token
       self.token = SecureRandom.urlsafe_base64(8)
-    end
-
-    def set_step
-      self.step = STEPS.first
-    end
-
-    def increment_step
-      update_attribute(:step, next_step) if next_step
-    end
-
-    def next_step
-      STEPS[STEPS.index(step) + 1]
     end
 end
