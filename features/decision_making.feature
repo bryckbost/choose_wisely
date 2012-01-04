@@ -18,10 +18,12 @@ Feature: Decision making
       | Factor #1 | Price       |
       | Factor #2 | Safety      |
       | Factor #3 | Reliability |
-    And I fill in the following:
-      | Weight #1 | 9 |
-      | Weight #2 | 8 |
-      | Weight #3 | 7 |
+    And I press "Continue"
+    Then I should see "How important are those factors?"
+    When I fill in the following:
+      | Price       | 9 |
+      | Safety      | 8 |
+      | Reliability | 7 |
     And I press "Continue"
     Then I should see "Great! Let’s start scoring your options."
     When I fill in the following:

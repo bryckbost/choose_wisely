@@ -1,0 +1,8 @@
+<h1>How important are those factors?</h1>
+<%= form_for @decision do |form| %>
+  <% @decision.factors.each_with_index do |factor, i| %>
+    <%= label_tag "decision_weights_#{i}", factor %>
+    <%= text_field_tag "decision[weights][]", @decision.weights[i], :id => "decision_weights_#{i}" %>
+  <% end %>
+  <%= form.submit "Continue" %>
+<% end %>

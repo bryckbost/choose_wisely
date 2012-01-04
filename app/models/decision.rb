@@ -1,7 +1,7 @@
 require "integer_array"
 
 class Decision
-  STEPS = %w(options factors scores answer)
+  STEPS = %w(options factors weights scores answer)
   SCALE = 10
 
   include MongoMapper::Document
