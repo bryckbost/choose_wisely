@@ -56,7 +56,7 @@ class Decision
 
   private
     def set_token
-      self.token = SecureRandom.hex
+      self.token = SecureRandom.urlsafe_base64(8)
     end
 
     def set_step
