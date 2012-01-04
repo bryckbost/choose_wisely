@@ -82,3 +82,25 @@ Feature: Decision making
     Then I should see "How important are those factors?"
     When I press "Continue"
     Then I should see errors
+
+  Scenario: Missing scores
+    Given I am on the homepage
+    When I fill in "Question" with "Which car should I buy?"
+    And I press "Continue"
+    And I fill in the following:
+      | Option #1 | Focus |
+      | Option #2 | Camry |
+    And I press "Continue"
+    And I fill in the following:
+      | Factor #1 | Price       |
+      | Factor #2 | Safety      |
+      | Factor #3 | Reliability |
+    And I press "Continue"
+    And I fill in the following:
+      | Price       | 9 |
+      | Safety      | 8 |
+      | Reliability | 7 |
+    And I press "Continue"
+    Then I should see "Great! Let’s start scoring your options."
+    When I press "Continue"
+    Then I should see errors
