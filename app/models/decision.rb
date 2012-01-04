@@ -1,4 +1,6 @@
 require "integer_array"
+require "integer_array_validator"
+require "string_array_validator"
 
 class Decision
   SCALE = 10
@@ -21,19 +23,19 @@ class Decision
     end
 
     state :optioned do
-      validates :options, :presence => true
+      validates :options, :string_array => true
     end
 
     state :factored do
-      validates :factors, :presence => true
+      validates :factors, :string_array => true
     end
 
     state :weighted do
-      validates :weights, :presence => true
+      validates :weights, :integer_array => true
     end
 
     state :scored do
-      validates :scores, :presence => true
+      validates :scores, :integer_array => true
     end
 
     event :continue do

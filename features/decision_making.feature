@@ -41,7 +41,15 @@ Feature: Decision making
     And I should see "69.6%" within the "Camry" section
 
   Scenario: Missing question
-    When I go to the homepage
+    Given I am on the homepage
     And I fill in "Question" with ""
     And I press "Continue"
+    Then I should see errors
+
+  Scenario: Missing options
+    Given I am on the homepage
+    When I fill in "Question" with "Which car should I buy?"
+    And I press "Continue"
+    Then I should see "Okay, what are your options?"
+    When I press "Continue"
     Then I should see errors
