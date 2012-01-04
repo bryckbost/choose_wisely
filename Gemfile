@@ -8,8 +8,9 @@ group :assets do
   gem "uglifier", ">= 1.0.3"
 end
 
-gem "mongo_mapper", "~> 0.10.1"
 gem "bson_ext", "~> 1.5.2"
+gem "mongo_mapper", "~> 0.10.1"
+gem "state_machine", "~> 1.1.1"
 
 group :development, :test do
   gem "cucumber-rails", "~> 1.2.1", :require => false
